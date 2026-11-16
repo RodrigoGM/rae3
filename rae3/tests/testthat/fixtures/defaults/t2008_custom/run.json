@@ -1,0 +1,18 @@
+{
+  "tool": "rae",
+  "version": "3.0.0.9000",
+  "method": "Reimplementation of RAE, Taylor et al. 2008 PLoS ONE 3(9):e3179; see docs/spec/02_gap_register.md for every inferred choice",
+  "input": "data.frame",
+  "genome": {"build": "custom", "n_markers": 1600, "virtual_grid": true, "grid_spacing": 100000, "hotspot_table": false, "cnv_catalogue": "none (no catalogue bundled for build custom)", "cnv_catalogue_rows": 0},
+  "input_log": {"rows_read": 130, "rows_non_autosomal_dropped": 0, "rows_unparseable": 0, "segments_unmappable": 0, "segments_duplicate_start": 0, "seg_sd_column": true},
+  "parameters": {"preset": "taylor2008", "seed": 1, "ubp_min_markers": 3, "density_n": 2048, "density_from": -1, "density_to": 1, "density_adjust": 2, "peak_window_lo": 0.5, "peak_window_hi": 2, "sigmoid_at_half": 0.001, "beta_fallback_gain": 20, "beta_fallback_loss": 20, "d1_pct_first": 0.025, "d1_pct_second": 0.01, "d1_bound": 1.4, "a1_bound": 1.4, "beta_a1": 1.4426950408889634, "n_perm": 400, "recleave_every": 100, "fdr": 0.01, "peak_q": 0.001, "shoulder_factor": 2, "germline_min_score": 0.5, "germline_min_normals": 2, "null_positions": 100, "ubp_outlier_k": 1.5, "split_at_centromere": 0, "error_sem": 0, "sd_from_breakpoints_c": 11.5, "marker_sd": null, "grid_spacing": null, "uniform_cleave_spacing": 87000, "density_bw": null, "density_noise_sem": 1, "d0_midpoint_zero": 0, "beta_min": 0, "halfmax_min": 0, "peak_span": 3, "diploid_nearest_zero": 0, "centre_window": 0, "e_inflate": 0, "ubp_outlier_log": 1, "hotspot_kde": 0, "cleave_code": 0, "p_strict": 0, "roi_code": 0, "roi_error_factor": 0.5, "region_weight_code": 0, "call_threshold": 0.9, "amp_threshold": 0.25, "burden_threshold": 0.75, "fga_threshold": 0.2, "fga_threshold_loss": null, "fga_assembly": 0, "cnv_polymorphic_cover": 0.5, "cnv_polymorphic_n": 2, "copy_step": 0, "comb_step_min": 0.06, "comb_step_max": 0.6, "comb_step_by": 0.002, "comb_rel": 0.95, "comb_tooth_min_frac": 0.02, "amp_cn_low": 5, "amp_cn_high": 9, "amp_ploidy_split": 2.7, "homdel_cn": 0.5, "a1_logistic": 0},
+  "inferred_fallbacks_fired": {
+    "G-01a_sd_from_breakpoints_samples": 0, "G-01a_sd_cohort_median_samples": 0, "G-01b_dn_from_sd_samples": 20, "G-01c_percentiles_from_pseudo_probes_samples": 20,
+    "G-01d_virtual_marker_grid": true, "G-08k_uniform_cleavage": true, "G-03f_no_halfmax_samples": 0, "G-13b_copy_step_fallback_samples": 0
+  },
+  "summary": {"n_samples": 20, "n_normals": 0, "ubp_excluded_samples": 0, "ubp_regions": 18, "median_segment_bp": 23000000,
+    "A0_fallback_samples": 20, "D0_fallback_samples": 20, "D1_pct01_samples": 17, "D1_bound_samples": 5, "A1_bound_samples": 0,
+    "null_rounds": 4, "null_scores": 10900, "cleaved_regions_first_round": 27, "p_floor": 9.173470323823502e-05,
+    "significant_regions_gain": 1, "significant_regions_loss": 1, "roi_events": 2, "roi_peaks": 0},
+  "warnings": ["custom genome: no centromere or hotspot table; uniform cleavage sites used in the null model [G-08k]"]
+}

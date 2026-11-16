@@ -1,0 +1,3 @@
+roi	direction	event	type	chrom	arm	start	end	size_bp	n_regions	apex_region	score	error	q	freq	freq_high	germline_normals_max	cnv_n	cnv_gain_pct	cnv_loss_pct	cnv_unknown_pct	cnv_any_pct	likely_polymorphic
+1	gain	1	region	3		20000001	21500000	1500000	1	6	0.225316	0.00335633	0.00132343	0.2	0.2	0	NA	NA	NA	NA	NA	NA
+2	loss	1	region	2		15000001	17000000	2000000	1	3	0.891938	0.0458751	0.00132343	0.8	0	0	NA	NA	NA	NA	NA	NA

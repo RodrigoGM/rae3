@@ -1,0 +1,23 @@
+Package: rae3
+Title: RAE Reimplemented: Recurrent Copy-Number Alterations in Tumour Cohorts
+Version: 3.0.0.9000
+Authors@R: person("Rodrigo", "Gularte Merida", role = c("aut", "cre"), email = "gularter@mskcc.org",
+    comment = c(ORCID = "0000-0002-4383-2523"))
+Description: A reimplementation, from the publication, of the RAE method of
+    Taylor et al. (2008) <doi:10.1371/journal.pone.0003179> for mapping
+    recurrent DNA copy-number alterations: per-tumour soft discriminators for
+    gain, amplification, hemizygous loss and homozygous deletion, a unified
+    breakpoint profile, a permutation background model with recombination-hotspot
+    cleavage, and regions of interest. Works on 'QDNAseq' objects and on segment
+    tables. Every choice the paper does not determine is a documented parameter.
+License: BSD_3_clause + file LICENSE
+Encoding: UTF-8
+Depends: R (>= 4.0)
+Imports: Rcpp, utils, stats, graphics, grDevices, grid, tools
+LinkingTo: Rcpp
+Suggests: QDNAseq, Biobase, testthat (>= 3.0.0), ggplot2 (>= 3.5.0), ggrepel,
+    ComplexHeatmap, circlize, vegan, png
+Config/testthat/edition: 3
+SystemRequirements: C++17
+RoxygenNote: 8.0.0
+Roxygen: list(markdown = TRUE)
