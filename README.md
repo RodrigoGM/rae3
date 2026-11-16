@@ -58,10 +58,8 @@ a population-CNV catalogue.
 
 - **`sequencing`** (default): places each tumour's detectors on its copy-number ladder. The one-copy step
   comes from supplied purity and ploidy, or is estimated from the spacing of the segment means. On
-  low-noise sequencing data the noise model RAE was designed with often finds no single-copy peak. On
-  BriTROC-1 (low-pass whole-genome sequencing, 265 tumours), agreement on amplifications with the
-  published calls was κ 0.65 with the estimated ladder and 0.95 with published purity/ploidy, against
-  0.52 for `cgh`.
+  low-noise sequencing data the noise model RAE was designed with often finds no single-copy peak. Its
+  parameters were tuned on BriTROC-1 (see *Validation*).
 - **`cgh`**: for array CGH. It behaves like the released RAE code (beta 0.91), which reproduces the
   published results.
 - **`taylor2008`**: for array CGH. It follows the method as the 2008 text describes it.
@@ -91,13 +89,32 @@ See *Output* in `?rae`.
 
 ## Validation
 
-- **Unit tests:** about 400 test expectations, including R/CLI identity.
+- **Unit tests:** about 770 test expectations, including R/CLI identity.
+
 - **Simulated cohort:** 23 of 26 pre-registered targets recovered with no false positives, and p-values
   calibrated under a global null.
+
 - **Two published prostate cohorts (`cgh` preset):**
   - CNA burden (`rae_fga`): Pearson 0.9999 (Hieronymus 2014, n = 104) and 0.997 (Taylor 2010, n = 147).
   - Taylor 2010 regions: 58 of 66 focal events (Table S3) at q ≤ 0.10, and all 7 arm-level events
     (Table S4).
+
+- **BriTROC-1, low-pass whole-genome sequencing (`sequencing` preset):** 265 relapsed high-grade serous
+  ovarian carcinomas (Smith, Bradley et al. 2023, *Nat Commun* 14:4387; 30 kb bins, hg19). **This cohort was
+  used to tune the `sequencing` parameters**, so these are tuning results, not an independent test. The
+  reference is the published per-gene calls (18 genes × 265 tumours) and the recurrent loci of their Table
+  S6; the metric was fixed before tuning.
+
+  | Preset                                    | Amplification κ | Sensitivity / PPV | Recurrent loci found (amp / del) |
+  |-------------------------------------------|-----------------|-------------------|----------------------------------|
+  | `cgh`                                     | 0.52            | 0.69 / 0.45       | 9 / 11, 2 / 5                    |
+  | `sequencing`, ladder estimated            | 0.65            | 0.65 / 0.67       | 9 / 11, 2 / 5                    |
+  | `sequencing`, published purity/ploidy     | 0.95            | 0.98 / 0.92       | 9 / 11, 3 / 5                    |
+
+  - With the ladder estimated, ploidy is within 0.5 of the published value in 65 % of tumours. Most misses
+    are one copy low, which over-calls homozygous deletions (PPV 0.18, against 0.69 with purity/ploidy
+    supplied). Supply purity and ploidy when you have them.
+  - Seed-to-seed variation is about ±0.003 in κ.
 
 ## Genome builds
 
@@ -118,14 +135,16 @@ corresponding output:
 
 - **Recombination hotspots:** HapMap phase II release 21 (McVean et al. 2004; Winckler et al. 2005; Frazer
   et al. 2007), lifted to each build; used by the null model.
+
 - **Chromosome sizes, centromeres, cytobands:** UCSC Genome Browser.
+
 - **Common population CNVs** (overlap columns of `roi.tsv`):
   - DGV Gold Standard 2016, hg19 (MacDonald et al. 2014);
   - gnomAD-SV v4.1, hg38 (CC0);
   - for T2T-CHM13: HPRC release 2 long-read deletions, plus gnomAD-SV gains lifted to T2T-CHM13.
 
-Cancer-gene labels for the plots come from OncoKB. They are not bundled: `rae_fetch_cancer_genes()`
-downloads them. OncoKB is free for academic research use; see its terms.
+Cancer-gene labels for the plots come from OncoKB. Use `rae_fetch_cancer_genes()` to
+download them. OncoKB is free for academic research use; see its terms.
 
 ## Licence
 
